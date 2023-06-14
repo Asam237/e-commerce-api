@@ -1,31 +1,14 @@
 import mongoose from "mongoose";
 
 const userSchema: mongoose.Schema = new mongoose.Schema({
-  fullname: {
-    type: String,
-    require: true,
-  },
-  email: {
-    type: String,
-    require: true,
-    unique: true,
-  },
-  password: {
-    type: String,
-    require: true,
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now(),
-  },
-  role: {
-    type: String,
-    enum: ["ADMIN", "METIER"],
-    default: "METIER",
-  },
+  fullname: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+  role: { type: String, enum: ["ADMIN", "METIER"], default: "METIER" },
+  createdAt: { type: Date, default: Date.now() },
 });
 
 const UserModel = mongoose.model("User", userSchema);
-const userUpdateParams: string[] = ["fullname", "email", "password", "role"];
+const UserUpdateParams: string[] = ["fullname", "password"];
 
-export { UserModel, userUpdateParams };
+export { UserModel, UserUpdateParams };

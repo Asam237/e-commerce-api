@@ -1,7 +1,7 @@
-import { registerType } from "../../shared/types/models";
+import { CreateUserInput } from "../../shared/types/models";
 import { UserModel } from "../models/user.model";
 
-const registerService = async (input: registerType) => {
+const registerService = async (input: CreateUserInput) => {
   return await UserModel.create(input);
 };
 
@@ -9,4 +9,4 @@ const findByEmail = async (email: string) => {
   return await UserModel.findOne({ email });
 };
 
-export { registerService, findByEmail };
+export default { registerService, findByEmail };

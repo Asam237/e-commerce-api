@@ -1,12 +1,12 @@
-export type registerType = {
+export type CreateUserInput = {
   fullname: string;
   email: string;
   password: string;
-  createdAt: string;
+  createdAt?: any;
   role: string;
 };
 
-export type loginType = {
+export type LoginUserInput = {
   email: string;
   password: string;
 };
