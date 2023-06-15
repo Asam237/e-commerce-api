@@ -16,4 +16,10 @@ export type CreateProductInput = {
   quantityAvailabe: number;
   costUnity: number;
   user?: any;
+  cart?: any;
+};
+
+export type CreateCartInput = {
+  quantity: number;
+  product?: any;
 };

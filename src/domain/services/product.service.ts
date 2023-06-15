@@ -13,8 +13,13 @@ const findOneProductService = async (id: any) => {
   return await ProductModel.findOne({ _id: id });
 };
 
+const findProductService = async () => {
+  return await ProductModel.find();
+};
+
 export default {
   createProductService,
   deleteProductService,
   findOneProductService,
+  findProductService,
 };
