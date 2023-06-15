@@ -6,6 +6,12 @@ const userSchema: mongoose.Schema = new mongoose.Schema({
   password: { type: String, required: true },
   role: { type: String, enum: ["ADMIN", "METIER"], default: "METIER" },
   createdAt: { type: Date, default: Date.now() },
+  products: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Product",
+    },
+  ],
 });
 
 const UserModel = mongoose.model("User", userSchema);

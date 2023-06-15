@@ -10,3 +10,10 @@ export type LoginUserInput = {
   email: string;
   password: string;
 };
+
+export type CreateProductInput = {
+  name: string;
+  quantityAvailabe: number;
+  costUnity: number;
+  user?: any;
+};
