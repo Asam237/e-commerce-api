@@ -5,7 +5,7 @@ import { CreateCartInput } from "../shared/types/models";
 
 const createCartController = async (req: Request, res: Response) => {
   const { quantity }: CreateCartInput = req.body;
-  const product = await ProductModel.findById({ _id: req.body.cart });
+  const product = await ProductModel.findById({ _id: req.body.product });
   const createCart = await cartService.createCartService({
     quantity,
     product,

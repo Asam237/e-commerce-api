@@ -2,7 +2,7 @@ import express, { Application } from "express";
 import * as bodyParser from "body-parser";
 import { AuthRoute } from "./routes/auth.route";
 import { ProductRoute } from "./routes/product.route";
-import { CartRouter } from "./routes/cart.route";
+import { CartRoute } from "./routes/cart.route";
 
 export const setupRestEndpoint = (app: Application) => {
   const router = express.Router();
@@ -10,5 +10,5 @@ export const setupRestEndpoint = (app: Application) => {
   app.use("/", router);
   app.use("/", AuthRoute());
   app.use("/", ProductRoute());
-  app.use("/", CartRouter());
+  app.use("/", CartRoute());
 };
