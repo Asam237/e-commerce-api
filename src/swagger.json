@@ -71,6 +71,20 @@
         }
       }
     },
+    "/auth/me": {
+      "get": {
+        "summary": "Current user",
+        "tags": ["Login"],
+        "responses": {
+          "200": {
+            "description": "User",
+            "schema": {
+              "$ref": "#/definitions/UserLogged"
+            }
+          }
+        }
+      }
+    },
     "/products/all": {
       "get": {
         "summary": "Get all products in system",
@@ -178,5 +192,14 @@
       "type": "array",
       "$ref": "#/definitions/User"
     }
-  }
+  },
+  "securityDefinitions": {
+    "bearerAuth": {
+      "name": "Authorization",
+      "in": "header",
+      "type": "apiKey",
+      "description": "Enter the token with the Bearer prefix, eg: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVC"
+    }
+  },
+  "security": [{ "bearerAuth": [] }]
 }

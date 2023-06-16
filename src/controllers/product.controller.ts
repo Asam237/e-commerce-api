@@ -12,6 +12,9 @@ const createProductController = async (req: Request, res: Response) => {
     quantityAvailabe,
     user,
   });
+  user.products.push(createProduct._id);
+  await user.save();
+  await createProduct.save();
   return res.status(200).json({ product: createProduct });
 };
 
@@ -36,4 +39,3 @@ export {
   findProductController,
   deleteProductController,
 };
-
