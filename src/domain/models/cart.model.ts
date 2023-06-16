@@ -8,6 +8,10 @@ const cartSchema: mongoose.Schema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Product",
   },
+  createdAt: {
+    type: Date,
+    default: Date.now(),
+  },
 });
 
 const CartModel = mongoose.model("Cart", cartSchema);

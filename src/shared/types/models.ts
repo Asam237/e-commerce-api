@@ -1,3 +1,8 @@
+import {
+  isObjectLiteralElementLike,
+  isTemplateMiddleOrTemplateTail,
+} from "typescript";
+
 export type CreateUserInput = {
   fullname: string;
   email: string;
@@ -22,4 +27,5 @@ export type CreateProductInput = {
 export type CreateCartInput = {
   quantity: number;
   product?: any;
+  createdAt?: any;
 };
