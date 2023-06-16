@@ -3,6 +3,7 @@ import * as bodyParser from "body-parser";
 import { AuthRoute } from "./routes/auth.route";
 import { ProductRoute } from "./routes/product.route";
 import { CartRoute } from "./routes/cart.route";
+import { OrderRoute } from "./routes/order.route";
 
 export const setupRestEndpoint = (app: Application) => {
   const router = express.Router();
@@ -11,4 +12,5 @@ export const setupRestEndpoint = (app: Application) => {
   app.use("/", AuthRoute());
   app.use("/", ProductRoute());
   app.use("/", CartRoute());
+  app.use("/", OrderRoute());
 };
