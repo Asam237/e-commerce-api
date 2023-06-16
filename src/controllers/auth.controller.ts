@@ -37,4 +37,13 @@ const loginController = async (req: Request, res: Response) => {
   return res.status(200).json({ user, token });
 };
 
-export { registerController, loginController };
+const me = async (req: Request, res: Response) => {
+  const token = req.headers.authorization;
+  const jsonPayload = JSON.parse(
+    Buffer.from(token.split(".")[1], "base64").toString()
+  );
+  const user = await authService.findUserById(jsonPayload.id);
+  return res.status(200).json({ user });
+};
+
+export { registerController, loginController, me };

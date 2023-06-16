@@ -9,4 +9,8 @@ const findByEmail = async (email: string) => {
   return await UserModel.findOne({ email });
 };
 
-export default { registerService, findByEmail };
+const findUserById = async (id: any) => {
+  return await UserModel.findById({ _id: id });
+};
+
+export default { registerService, findByEmail, findUserById };
