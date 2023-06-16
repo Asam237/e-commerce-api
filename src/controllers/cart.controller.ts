@@ -10,6 +10,9 @@ const createCartController = async (req: Request, res: Response) => {
     quantity,
     product,
   });
+  product.carts.push(createCart._id);
+  await product.save();
+  await createCart.save();
   return res.status(200).json({ cart: createCart });
 };
 

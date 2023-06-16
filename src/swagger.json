@@ -146,6 +146,130 @@
           }
         }
       }
+    },
+    "/carts/all": {
+      "get": {
+        "summary": "Get all carts in system",
+        "tags": ["Carts"],
+        "responses": {
+          "200": {
+            "description": "Carts",
+            "schema": {
+              "$ref": "#/definitions/Carts"
+            }
+          }
+        }
+      }
+    },
+    "/carts/create": {
+      "post": {
+        "tags": ["Carts"],
+        "summary": "Create new cart in system",
+        "parameters": [
+          {
+            "name": "cart",
+            "in": "body",
+            "description": "Cart that we want to create",
+            "schema": {
+              "$ref": "#/definitions/Carts"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "New cart is created",
+            "schema": {
+              "$ref": "#/definitions/Carts"
+            }
+          }
+        }
+      }
+    },
+    "/carts/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "ID of cart that we want to find",
+          "type": "string"
+        }
+      ],
+      "delete": {
+        "summary": "Delete cart with given ID",
+        "tags": ["Carts"],
+        "responses": {
+          "200": {
+            "description": "Cart is deleted",
+            "schema": {
+              "$ref": "#/definitions/Carts"
+            }
+          }
+        }
+      }
+    },
+    "/orders/all": {
+      "get": {
+        "summary": "Get all orders in system",
+        "tags": ["Orders"],
+        "responses": {
+          "200": {
+            "description": "Orders",
+            "schema": {
+              "$ref": "#/definitions/Orders"
+            }
+          }
+        }
+      }
+    },
+    "/orders/create": {
+      "post": {
+        "tags": ["Orders"],
+        "summary": "Create new order in system",
+        "parameters": [
+          {
+            "name": "order",
+            "in": "body",
+            "description": "Order that we want to create",
+            "schema": {
+              "$ref": "#/definitions/Orders"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "New order is created",
+            "schema": {
+              "$ref": "#/definitions/Orders"
+            }
+          }
+        }
+      }
+    },
+    "/orders/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "ID of order that we want to find",
+          "type": "string"
+        }
+      ],
+      "delete": {
+        "summary": "Delete order with given ID",
+        "tags": ["Orders"],
+        "responses": {
+          "200": {
+            "description": "Order is deleted",
+            "schema": {
+              "$ref": "#/definitions/Orders"
+            }
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -172,6 +296,19 @@
         }
       }
     },
+    "Orders": {
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "user": {
+          "type": "string"
+        },
+        "cart": {
+          "type": "string"
+        }
+      }
+    },
     "Products": {
       "properties": {
         "name": {
@@ -184,6 +321,16 @@
           "type": "number"
         },
         "user": {
+          "type": "string"
+        }
+      }
+    },
+    "Carts": {
+      "properties": {
+        "quantity": {
+          "type": "number"
+        },
+        "product": {
           "type": "string"
         }
       }

@@ -13,6 +13,10 @@ const createOrderController = async (req: Request, res: Response) => {
     cart,
     user,
   });
+  user.orders.push(createOrder._id);
+  cart.orders.push(createOrder._id);
+  await cart.save();
+  await createOrder.save();
   return res.status(200).json({ order: createOrder });
 };
 

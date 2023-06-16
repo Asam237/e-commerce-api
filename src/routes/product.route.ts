@@ -13,7 +13,7 @@ const ProductRoute = () => {
   router.get(
     `${prefix}/all`,
     verifyToken,
-    productController.findProductController
+    productController.findProductControllerByUser
   );
   router.get(
     `${prefix}/:id`,

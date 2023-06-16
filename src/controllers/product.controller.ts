@@ -33,9 +33,17 @@ const findProductController = async (req: Request, res: Response) => {
   return res.status(200).json({ products });
 };
 
+const findProductControllerByUser = async (req: Request, res: Response) => {
+  const products = await productService.findProductServiceByUser(
+    req.user.id,
+    "user"
+  );
+  return res.status(200).json({ products });
+};
 export {
   createProductController,
   findOneProductController,
   findProductController,
   deleteProductController,
+  findProductControllerByUser,
 };

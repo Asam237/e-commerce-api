@@ -17,9 +17,14 @@ const findProductService = async () => {
   return await ProductModel.find();
 };
 
+const findProductServiceByUser = async (id: any, populate: any) => {
+  return await ProductModel.find({ user: id }).populate(populate);
+};
+
 export default {
   createProductService,
   deleteProductService,
   findOneProductService,
   findProductService,
+  findProductServiceByUser,
 };

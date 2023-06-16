@@ -8,10 +8,12 @@ const cartSchema: mongoose.Schema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Product",
   },
-  order: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Order",
-  },
+  orders: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Order",
+    },
+  ],
   createdAt: {
     type: Date,
     default: Date.now(),
