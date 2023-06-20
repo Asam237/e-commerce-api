@@ -1,7 +1,9 @@
 import { Request, Response } from "express";
+import { ProductUpdateParams } from "../domain/models/product.model";
 import { UserModel } from "../domain/models/user.model";
 import productService from "../domain/services/product.service";
 import { CreateProductInput } from "../shared/types/models";
+import { parseRequest } from "../utils/helpers";
 
 const createProductController = async (req: Request, res: Response) => {
   const { costUnity, name, quantityAvailabe }: CreateProductInput = req.body;
@@ -40,10 +42,19 @@ const findProductControllerByUser = async (req: Request, res: Response) => {
   );
   return res.status(200).json({ products });
 };
+
+const updateProductController = async (req: Request, res: Response) => {
+  const id = req.params.id;
+  const data = parseRequest(req.body, ProductUpdateParams);
+  const updateProduct = await productService.updateProductService(id, data);
+  return res.status(200).json({ product: updateProduct });
+};
+
 export {
   createProductController,
   findOneProductController,
   findProductController,
   deleteProductController,
   findProductControllerByUser,
+  updateProductController,
 };

@@ -23,7 +23,7 @@ yarn serve
 
 The application will be launched by [Nodemon](https://nodemon.com) so it's will restart automatically on file change
 
-Test the API with `Postman`
+Test the API with: `Postman`
 
 Swagger: `http://localhost:3010/api-docs/`
 

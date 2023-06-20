@@ -124,7 +124,7 @@
         }
       }
     },
-    "/products/{id}": {
+    "/products/{myid}": {
       "parameters": [
         {
           "name": "id",
@@ -140,6 +140,29 @@
         "responses": {
           "200": {
             "description": "Product is deleted",
+            "schema": {
+              "$ref": "#/definitions/Products"
+            }
+          }
+        }
+      }
+    },
+    "/products/{id}": {
+      "put": {
+        "summary": "Update product with given ID",
+        "tags": ["Products"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of product that we want to find",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product is update",
             "schema": {
               "$ref": "#/definitions/Products"
             }

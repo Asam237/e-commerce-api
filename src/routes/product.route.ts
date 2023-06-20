@@ -20,6 +20,11 @@ const ProductRoute = () => {
     verifyToken,
     productController.findOneProductController
   );
+  router.put(
+    `${prefix}/:id`,
+    verifyToken,
+    productController.updateProductController
+  );
   router.delete(
     `${prefix}/:id`,
     verifyToken,

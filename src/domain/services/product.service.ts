@@ -21,10 +21,18 @@ const findProductServiceByUser = async (id: any, populate: any) => {
   return await ProductModel.find({ user: id }).populate(populate);
 };
 
+const updateProductService = async (id: any, data: any) => {
+  if (data !== null) {
+    return await ProductModel.findOneAndUpdate({ _id: id }, data);
+  }
+  return await ProductModel.findOne({ _id: id });
+};
+
 export default {
   createProductService,
   deleteProductService,
   findOneProductService,
   findProductService,
   findProductServiceByUser,
+  updateProductService,
 };

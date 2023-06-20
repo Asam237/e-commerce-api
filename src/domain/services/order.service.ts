@@ -17,9 +17,17 @@ const findAllOrderService = async () => {
   return await OrderModel.find();
 };
 
+const updateOrderService = async (id: any, data: any) => {
+  if (data !== null) {
+    return await OrderModel.findOneAndUpdate({ _id: id }, data);
+  }
+  return await OrderModel.findOne({ _id: id });
+};
+
 export default {
   createOrderService,
   deleteOrderService,
   findOneOrderService,
   findAllOrderService,
+  updateOrderService,
 };
