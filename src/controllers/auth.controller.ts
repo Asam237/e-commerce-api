@@ -23,7 +23,7 @@ const loginController = async (req: Request, res: Response) => {
   const { email, password }: LoginUserInput = req.body;
   const user = await authService.findByEmail(email);
   if (!user) {
-    return res.status(400).json({ message: "Login failed!" });
+    return res.json({ message: "Login failed!" });
   }
   const isMatch: boolean = bcrypt.compareSync(password, user.password);
   if (!isMatch) {
@@ -34,7 +34,7 @@ const loginController = async (req: Request, res: Response) => {
     id: _id,
   };
   const token = jwt.sign(tokenPayload, JWT_SECRET!!, { expiresIn: EXPIRES!! });
-  return res.status(200).json({ user, token });
+  return res.json({ user, token });
 };
 
 const me = async (req: Request, res: Response) => {
@@ -43,7 +43,7 @@ const me = async (req: Request, res: Response) => {
     Buffer.from(token.split(".")[1], "base64").toString()
   );
   const user = await authService.findUserById(jsonPayload.id);
-  return res.status(200).json({ user });
+  return res.json({ user });
 };
 
 export { registerController, loginController, me };

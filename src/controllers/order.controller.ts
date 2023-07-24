@@ -19,7 +19,7 @@ const createOrderController = async (req: Request, res: Response) => {
   cart.orders.push(createOrder._id);
   await cart.save();
   await createOrder.save();
-  return res.status(200).json({ order: createOrder });
+  return res.json({ order: createOrder });
 };
 
 const deleteOrderController = async (req: Request, res: Response) => {
@@ -29,19 +29,19 @@ const deleteOrderController = async (req: Request, res: Response) => {
 
 const findOneOrderController = async (req: Request, res: Response) => {
   const order = await orderService.findOneOrderService(req.params.id);
-  return res.status(200).json({ order });
+  return res.json({ order });
 };
 
 const findAllOrderController = async (req: Request, res: Response) => {
   const orders = await orderService.findAllOrderService();
-  return res.status(200).json({ orders });
+  return res.json({ orders });
 };
 
 const updateOrderController = async (req: Request, res: Response) => {
   const id = req.params.id;
   const data = parseRequest(req.body, OrderUpdateParams);
   const updateOrder = await orderService.updateOrderService(id, data);
-  return res.status(200).json({ order: updateOrder });
+  return res.json({ order: updateOrder });
 };
 
 export {

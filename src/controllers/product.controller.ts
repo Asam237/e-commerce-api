@@ -17,22 +17,22 @@ const createProductController = async (req: Request, res: Response) => {
   user.products.push(createProduct._id);
   await user.save();
   await createProduct.save();
-  return res.status(200).json({ product: createProduct });
+  return res.json({ product: createProduct });
 };
 
 const findOneProductController = async (req: Request, res: Response) => {
   const product = await productService.findOneProductService(req.params.id);
-  return res.status(200).json({ product });
+  return res.json({ product });
 };
 
 const deleteProductController = async (req: Request, res: Response) => {
   await productService.deleteProductService(req.params.id);
-  return res.status(200).json({ message: "Product delete success!!!" });
+  return res.json({ message: "Product delete success!!!" });
 };
 
 const findProductController = async (req: Request, res: Response) => {
   const products = await productService.findProductService();
-  return res.status(200).json({ products });
+  return res.json({ products });
 };
 
 const findProductControllerByUser = async (req: Request, res: Response) => {
@@ -40,14 +40,14 @@ const findProductControllerByUser = async (req: Request, res: Response) => {
     req.user.id,
     "user"
   );
-  return res.status(200).json({ products });
+  return res.json({ products });
 };
 
 const updateProductController = async (req: Request, res: Response) => {
   const id = req.params.id;
   const data = parseRequest(req.body, ProductUpdateParams);
   const updateProduct = await productService.updateProductService(id, data);
-  return res.status(200).json({ product: updateProduct });
+  return res.json({ product: updateProduct });
 };
 
 export {

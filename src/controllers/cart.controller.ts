@@ -15,29 +15,29 @@ const createCartController = async (req: Request, res: Response) => {
   product.carts.push(createCart._id);
   await product.save();
   await createCart.save();
-  return res.status(200).json({ cart: createCart });
+  return res.json({ cart: createCart });
 };
 
 const deleteCartController = async (req: Request, res: Response) => {
   await cartService.deleteCartService(req.params.id);
-  return res.status(200).json({ message: "cart delete success!!!" });
+  return res.json({ message: "cart delete success!!!" });
 };
 
 const findOneCartController = async (req: Request, res: Response) => {
   const cart = await cartService.findOneCartService(req.params.id);
-  return res.status(200).json({ cart });
+  return res.json({ cart });
 };
 
 const findCartController = async (req: Request, res: Response) => {
   const carts = await cartService.findAllCartService();
-  return res.status(200).json({ carts });
+  return res.json({ carts });
 };
 
 const updateCartController = async (req: Request, res: Response) => {
   const id = req.params.id;
   const data = parseRequest(req.body, CartUpdateParams);
   const updateCart = await cartService.updateCartService(id, data);
-  return res.status(200).json({ cart: updateCart });
+  return res.json({ cart: updateCart });
 };
 
 export {
