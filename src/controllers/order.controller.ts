@@ -8,40 +8,60 @@ import { parseRequest } from "../utils/helpers";
 
 const createOrderController = async (req: Request, res: Response) => {
   const { status }: CreateOrderInput = req.body;
-  const cart = await CartModel.findById({ _id: req.body.cart });
-  const user = await UserModel.findById({ _id: req.body.user });
-  const createOrder = await orderService.createOrderService({
-    status,
-    cart,
-    user,
-  });
-  user.orders.push(createOrder._id);
-  cart.orders.push(createOrder._id);
-  await cart.save();
-  await createOrder.save();
-  return res.json({ order: createOrder });
+  try {
+    const cart = await CartModel.findById({ _id: req.body.cart });
+    const user = await UserModel.findById({ _id: req.body.user });
+    const createOrder = await orderService.createOrderService({
+      status,
+      cart,
+      user,
+    });
+    user.orders.push(createOrder._id);
+    cart.orders.push(createOrder._id);
+    await cart.save();
+    await createOrder.save();
+    return res.json({ order: createOrder });
+  } catch (error) {
+    return res.status(400).json({ error });
+  }
 };
 
 const deleteOrderController = async (req: Request, res: Response) => {
-  await orderService.deleteOrderService(req.params.id);
-  return res.status({ message: "order delete success!!" });
+  try {
+    await orderService.deleteOrderService(req.params.id);
+    return res.status({ message: "order delete success!!" });
+  } catch (error) {
+    return res.status(400).json({ error });
+  }
 };
 
 const findOneOrderController = async (req: Request, res: Response) => {
-  const order = await orderService.findOneOrderService(req.params.id);
-  return res.json({ order });
+  try {
+    const order = await orderService.findOneOrderService(req.params.id);
+    return res.json({ order });
+  } catch (error) {
+    return res.status(400).json({ error });
+  }
 };
 
 const findAllOrderController = async (req: Request, res: Response) => {
-  const orders = await orderService.findAllOrderService();
-  return res.json({ orders });
+  try {
+    const orders = await orderService.findAllOrderService();
+    return res.json({ orders });
+  } catch (error) {
+    return res.status(400).json({ error });
+  }
 };
 
 const updateOrderController = async (req: Request, res: Response) => {
   const id = req.params.id;
   const data = parseRequest(req.body, OrderUpdateParams);
-  const updateOrder = await orderService.updateOrderService(id, data);
-  return res.json({ order: updateOrder });
+  try {
+    const updateOrder = await orderService.updateOrderService(id, data);
+    return res.json({ order: updateOrder });
+  } catch (error) {
+    return res.status(400).json({ error });
+  }
 };
 
 export {
