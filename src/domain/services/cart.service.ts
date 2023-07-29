@@ -1,23 +1,23 @@
 import { CreateCartInput } from "../../shared/types/models";
 import { CartModel } from "../models/cart.model";
 
-const createCartService = async (input: CreateCartInput) => {
+const create = async (input: CreateCartInput) => {
   return await CartModel.create(input);
 };
 
-const deleteCartService = async (id: any) => {
+const deleteById = async (id: any) => {
   return await CartModel.deleteOne({ _id: id });
 };
 
-const findOneCartService = async (id: any) => {
+const findById = async (id: any) => {
   return await CartModel.findOne({ _id: id });
 };
 
-const findAllCartService = async () => {
+const findAll = async () => {
   return await CartModel.find();
 };
 
-const updateCartService = async (id: any, data: any) => {
+const update = async (id: any, data: any) => {
   if (data !== null) {
     await CartModel.findOneAndUpdate({ _id: id }, data);
   }
@@ -25,9 +25,9 @@ const updateCartService = async (id: any, data: any) => {
 };
 
 export default {
-  createCartService,
-  deleteCartService,
-  findAllCartService,
-  findOneCartService,
-  updateCartService,
+  create,
+  findAll,
+  findById,
+  update,
+  deleteById,
 };

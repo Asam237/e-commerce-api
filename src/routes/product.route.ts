@@ -5,31 +5,11 @@ import { verifyToken } from "../utils/verifyToken";
 const ProductRoute = () => {
   const router = Router();
   const prefix: string = "/products";
-  router.post(
-    `${prefix}/create`,
-    verifyToken,
-    productController.createProductController
-  );
-  router.get(
-    `${prefix}/all`,
-    verifyToken,
-    productController.findProductControllerByUser
-  );
-  router.get(
-    `${prefix}/:id`,
-    verifyToken,
-    productController.findOneProductController
-  );
-  router.put(
-    `${prefix}/:id`,
-    verifyToken,
-    productController.updateProductController
-  );
-  router.delete(
-    `${prefix}/:id`,
-    verifyToken,
-    productController.deleteProductController
-  );
+  router.post(`${prefix}/create`, verifyToken, productController.create);
+  router.get(`${prefix}/all`, verifyToken, productController.getAll);
+  router.get(`${prefix}/:id`, verifyToken, productController.getOne);
+  router.put(`${prefix}/:id`, verifyToken, productController.update);
+  router.delete(`${prefix}/:id`, verifyToken, productController.remove);
   return router;
 };
 

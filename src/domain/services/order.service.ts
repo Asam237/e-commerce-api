@@ -1,23 +1,23 @@
 import { CreateOrderInput } from "../../shared/types/models";
 import { OrderModel } from "../models/order.model";
 
-const createOrderService = async (input: CreateOrderInput) => {
+const create = async (input: CreateOrderInput) => {
   return await OrderModel.create(input);
 };
 
-const deleteOrderService = async (id: any) => {
+const deleteById = async (id: any) => {
   return await OrderModel.deleteOne({ _id: id });
 };
 
-const findOneOrderService = async (id: any) => {
+const findById = async (id: any) => {
   return await OrderModel.findOne({ _id: id });
 };
 
-const findAllOrderService = async () => {
+const findAll = async () => {
   return await OrderModel.find();
 };
 
-const updateOrderService = async (id: any, data: any) => {
+const update = async (id: any, data: any) => {
   if (data !== null) {
     return await OrderModel.findOneAndUpdate({ _id: id }, data);
   }
@@ -25,9 +25,9 @@ const updateOrderService = async (id: any, data: any) => {
 };
 
 export default {
-  createOrderService,
-  deleteOrderService,
-  findOneOrderService,
-  findAllOrderService,
-  updateOrderService,
+  create,
+  deleteById,
+  findById,
+  findAll,
+  update,
 };

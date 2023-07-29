@@ -6,12 +6,12 @@ import orderService from "../domain/services/order.service";
 import { CreateOrderInput } from "../shared/types/models";
 import { parseRequest } from "../utils/helpers";
 
-const createOrderController = async (req: Request, res: Response) => {
+const create = async (req: Request, res: Response) => {
   const { status }: CreateOrderInput = req.body;
   try {
     const cart = await CartModel.findById({ _id: req.body.cart });
     const user = await UserModel.findById({ _id: req.body.user });
-    const createOrder = await orderService.createOrderService({
+    const createOrder = await orderService.create({
       status,
       cart,
       user,
@@ -26,48 +26,42 @@ const createOrderController = async (req: Request, res: Response) => {
   }
 };
 
-const deleteOrderController = async (req: Request, res: Response) => {
+const remove = async (req: Request, res: Response) => {
   try {
-    await orderService.deleteOrderService(req.params.id);
+    await orderService.deleteById(req.params.id);
     return res.status({ message: "order delete success!!" });
   } catch (error) {
     return res.status(400).json({ error });
   }
 };
 
-const findOneOrderController = async (req: Request, res: Response) => {
+const getOne = async (req: Request, res: Response) => {
   try {
-    const order = await orderService.findOneOrderService(req.params.id);
+    const order = await orderService.findById(req.params.id);
     return res.json({ order });
   } catch (error) {
     return res.status(400).json({ error });
   }
 };
 
-const findAllOrderController = async (req: Request, res: Response) => {
+const getAll = async (req: Request, res: Response) => {
   try {
-    const orders = await orderService.findAllOrderService();
+    const orders = await orderService.findAll();
     return res.json({ orders });
   } catch (error) {
     return res.status(400).json({ error });
   }
 };
 
-const updateOrderController = async (req: Request, res: Response) => {
+const update = async (req: Request, res: Response) => {
   const id = req.params.id;
   const data = parseRequest(req.body, OrderUpdateParams);
   try {
-    const updateOrder = await orderService.updateOrderService(id, data);
+    const updateOrder = await orderService.update(id, data);
     return res.json({ order: updateOrder });
   } catch (error) {
     return res.status(400).json({ error });
   }
 };
 
-export {
-  createOrderController,
-  deleteOrderController,
-  findOneOrderController,
-  findAllOrderController,
-  updateOrderController,
-};
+export { create, update, remove, getAll, getOne };
