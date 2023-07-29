@@ -1,15 +1,15 @@
 import { Router } from "express";
 import * as orderController from "../controllers/order.controller";
-import { verifyToken } from "../utils/verifyToken";
+import { authMiddleware } from "../shared/core/middleware/auth.middleware";
 
 const OrderRoute = () => {
   const router = Router();
   const prefix: string = "/orders";
-  router.post(`${prefix}/create`, verifyToken, orderController.create);
-  router.get(`${prefix}/all`, verifyToken, orderController.getAll);
-  router.get(`${prefix}/:id`, verifyToken, orderController.getOne);
-  router.put(`${prefix}/:id`, verifyToken, orderController.update);
-  router.delete(`${prefix}/:id`, verifyToken, orderController.remove);
+  router.post(`${prefix}/create`, authMiddleware, orderController.create);
+  router.get(`${prefix}/all`, authMiddleware, orderController.getAll);
+  router.get(`${prefix}/:id`, authMiddleware, orderController.getOne);
+  router.put(`${prefix}/:id`, authMiddleware, orderController.update);
+  router.delete(`${prefix}/:id`, authMiddleware, orderController.remove);
   return router;
 };
 
