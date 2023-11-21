@@ -32,7 +32,7 @@ Swagger: `http://localhost:3010/api-docs/`
 This project is maintained by:
 
 - Abba Sali Aboubakar Mamate ([@asam_237](https://twitter.com/asam_237))
-- my website: [https://abbasali.vercel.app](https://abbasali.vercel.app)
+- my website: [https://abbasali.cm](https://abbasali.cm)
 - email: abbasalimokolo@gmail.com
 - mobile: (+237) 691846922
 
