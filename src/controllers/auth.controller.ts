@@ -28,11 +28,11 @@ const loginController = async (req: Request, res: Response) => {
   try {
     const user = await authService.findByEmail(email);
     if (!user) {
-      return res.json({ message: "Login failed!" });
+      return res.json({ message: "login failed!" });
     }
     const isMatch: boolean = bcrypt.compareSync(password, user.password);
     if (!isMatch) {
-      return res.status(400).json({ message: "Login failed!" });
+      return res.status(400).json({ message: "login failed!" });
     }
     const { _id }: any = user;
     const tokenPayload: TokenPayload = {
