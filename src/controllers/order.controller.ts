@@ -29,7 +29,7 @@ const create = async (req: Request, res: Response) => {
 const remove = async (req: Request, res: Response) => {
   try {
     await orderService.deleteById(req.params.id);
-    return res.status({ message: "order delete success!!" });
+    return res.json({ message: "order delete success!!" });
   } catch (error) {
     return res.status(400).json({ error });
   }

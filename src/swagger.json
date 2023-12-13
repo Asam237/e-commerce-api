@@ -2,8 +2,8 @@
   "swagger": "2.0",
   "info": {
     "version": "1.0.0",
-    "title": "ECommerce RestAPI",
-    "description": "My ECommerce RestAPI Project Application API",
+    "title": "E-Commerce RestAPI",
+    "description": "My E-Commerce RestAPI Project Application API",
     "license": {
       "name": "MIT",
       "url": "https://opensource.org/licenses/MIT"
@@ -21,7 +21,7 @@
   "consumes": ["application/json"],
   "produces": ["application/json"],
   "paths": {
-    "/auth/create": {
+    "/auth/register": {
       "post": {
         "tags": ["Register"],
         "description": "Create new user in system",
@@ -85,7 +85,7 @@
         }
       }
     },
-    "/products/all": {
+    "/products": {
       "get": {
         "summary": "Get all products in system",
         "tags": ["Products"],
@@ -99,7 +99,7 @@
         }
       }
     },
-    "/products/create": {
+    "/products/": {
       "post": {
         "tags": ["Products"],
         "summary": "Create new product in system",
@@ -170,7 +170,7 @@
         }
       }
     },
-    "/carts/all": {
+    "/carts": {
       "get": {
         "summary": "Get all carts in system",
         "tags": ["Carts"],
@@ -184,7 +184,7 @@
         }
       }
     },
-    "/carts/create": {
+    "/carts/": {
       "post": {
         "tags": ["Carts"],
         "summary": "Create new cart in system",
@@ -232,7 +232,7 @@
         }
       }
     },
-    "/orders/all": {
+    "/orders": {
       "get": {
         "summary": "Get all orders in system",
         "tags": ["Orders"],
@@ -246,7 +246,7 @@
         }
       }
     },
-    "/orders/create": {
+    "/orders/": {
       "post": {
         "tags": ["Orders"],
         "summary": "Create new order in system",

@@ -51,7 +51,7 @@ const getAll = async (req: Request, res: Response) => {
   }
 };
 
-const getByUser = async (req: Request, res: Response) => {
+const getByUser = async (req: any, res: Response) => {
   try {
     const products = await productService.findByService(req.user.id, "user");
     return res.json({ products });
