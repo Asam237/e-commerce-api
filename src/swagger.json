@@ -124,7 +124,7 @@
         }
       }
     },
-    "/products/{myid}": {
+    "/products/delete/{myid}": {
       "parameters": [
         {
           "name": "id",
@@ -209,7 +209,7 @@
         }
       }
     },
-    "/carts/{id}": {
+    "/carts/delete/{id}": {
       "parameters": [
         {
           "name": "id",
@@ -271,7 +271,7 @@
         }
       }
     },
-    "/orders/{id}": {
+    "/orders/delete/{id}": {
       "parameters": [
         {
           "name": "id",

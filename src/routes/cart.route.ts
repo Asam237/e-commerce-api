@@ -9,7 +9,7 @@ const CartRoute = () => {
   router.get(`${prefix}`, authMiddleware, cartController.getAll);
   router.get(`${prefix}/:id`, authMiddleware, cartController.getOne);
   router.put(`${prefix}/:id`, authMiddleware, cartController.update);
-  router.delete(`${prefix}/:id`, authMiddleware, cartController.remove);
+  router.delete(`${prefix}/delete/:id`, authMiddleware, cartController.remove);
   return router;
 };
 

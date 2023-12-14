@@ -9,7 +9,7 @@ const ProductRoute = () => {
   router.get(`${prefix}`, authMiddleware, productController.getAll);
   router.get(`${prefix}/:id`, authMiddleware, productController.getOne);
   router.put(`${prefix}/:id`, authMiddleware, productController.update);
-  router.delete(`${prefix}/:id`, authMiddleware, productController.remove);
+  router.delete(`${prefix}/delete/:id`, authMiddleware, productController.remove);
   return router;
 };
 
