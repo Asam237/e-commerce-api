@@ -25,7 +25,8 @@ The application will be launched by [Nodemon](https://nodemon.com) so it's will 
 
 Test the API with: `Postman`
 
-Swagger: `http://localhost:3010/api-docs/`
+Swagger: `http://localhost:3010/api-docs/`  
+(Update the port number to match the one in `.env`)
 
 ## Authors
 
