@@ -1,17 +1,15 @@
 import { connect, connection } from "mongoose";
 import { MONGO_URI } from "./config";
 
-export const connectToDB = async () => {
+export const connectToDB = () => {
   try {
-    await connect(MONGO_URI!!);
+    connect(MONGO_URI!!).then(() =>
+      console.log(`[mongodb]: connected to ${connection.db.databaseName}`),
+    );
   } catch (error) {
     throw new Error(error);
   }
 };
-
-connection.on("connected", () => {
-  console.log(`[mongodb]: connected to ${connection.db.databaseName}`);
-});
 
 connection.on("disconnected", () => {
   console.log(`[mongodb]: disconnected`);
