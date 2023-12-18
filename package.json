@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "serve": "nodemon index.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --watchAll --verbose --coverage"
   },
   "author": "",
   "license": "ISC",
@@ -30,6 +30,7 @@
   "devDependencies": {
     "@types/express": "^4.17.21",
     "@types/jsonwebtoken": "^9.0.5",
+    "jest": "^29.7.0",
     "prettier": "^3.1.1"
   }
 }
