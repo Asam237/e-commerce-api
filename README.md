@@ -5,10 +5,10 @@ This project contains a minimal start-up for a Node.js e-commerce project using 
 ## Prerequisites
 
 - Node.js 16+
-- Yarn or NPM
+- Yarn
 
 ## Installation
-
+- Create a ```.env``` file using the template ```.env.example```
 - Install dependencies
 
 ```bash
