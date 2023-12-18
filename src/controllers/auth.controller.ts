@@ -34,13 +34,7 @@ const loginController = async (req: Request, res: Response) => {
     if (!isMatch) {
       return res.status(400).json({ message: "login failed!" });
     }
-    const { _id }: any = user;
-    const tokenPayload: TokenPayload = {
-      id: _id,
-    };
-    const token = jwt.sign(tokenPayload, JWT_SECRET!!, {
-      expiresIn: EXPIRES!!,
-    });
+    const token = user.generateAuthToken();
     return res.json({ user, token });
   } catch (error) {
     return res.status(400).json({ error });
