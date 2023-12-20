@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
-import { CreateUserInput, LoginUserInput } from "../shared/types/models";
+import { CreateUserDto, LoginUserDto } from "../dtos/models";
 import * as bcrypt from "bcryptjs";
-import authService from "../domain/services/auth.service";
+import authService from "../services/auth.service";
 
 const registerController = async (req: Request, res: Response) => {
-  const { email, fullname, role }: CreateUserInput = req.body;
+  const { email, fullname, role }: CreateUserDto = req.body;
   try {
     const password: string = bcrypt.hashSync(req.body.password, 10);
     const createUser = await authService.registerService({
@@ -21,7 +21,7 @@ const registerController = async (req: Request, res: Response) => {
 };
 
 const loginController = async (req: Request, res: Response) => {
-  const { email, password }: LoginUserInput = req.body;
+  const { email, password }: LoginUserDto = req.body;
   try {
     const user = await authService.findByEmail(email);
     if (!user) {

@@ -1,6 +1,6 @@
 import { Router } from "express";
 import * as productController from "../controllers/product.controller";
-import { authMiddleware } from "../shared/core/middleware/auth.middleware";
+import { authMiddleware } from "../middlewares/auth.middleware";
 
 const ProductRoute = () => {
   const router = Router();

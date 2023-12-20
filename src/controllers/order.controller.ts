@@ -1,13 +1,13 @@
 import { Request, Response } from "express";
-import { CartModel } from "../domain/models/cart.model";
-import { OrderUpdateParams } from "../domain/models/order.model";
-import { UserModel } from "../domain/models/user.model";
-import orderService from "../domain/services/order.service";
-import { CreateOrderInput } from "../shared/types/models";
-import { parseRequest } from "../utils/helpers";
+import { CartModel } from "../models/cart.model";
+import { OrderUpdateParams } from "../models/order.model";
+import { UserModel } from "../models/user.model";
+import orderService from "../services/order.service";
+import { CreateOrderDto } from "../dtos/models";
+import { parseRequest } from "./helpers";
 
 const create = async (req: Request, res: Response) => {
-  const { status }: CreateOrderInput = req.body;
+  const { status }: CreateOrderDto = req.body;
   try {
     const cart = await CartModel.findById({ _id: req.body.cart });
     const user = await UserModel.findById({ _id: req.body.user });

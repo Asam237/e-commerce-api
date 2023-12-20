@@ -1,7 +1,7 @@
-import { CreateProductInput } from "../../shared/types/models";
+import { CreateProductDto } from "../dtos/models";
 import { ProductModel } from "../models/product.model";
 
-const create = async (input: CreateProductInput) => {
+const create = async (input: CreateProductDto) => {
   return await ProductModel.create(input);
 };
 

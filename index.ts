@@ -1,7 +1,7 @@
 import express from "express";
 import { setupRestEndpoint } from "./src/server";
-import { PORT } from "./src/shared/core/config";
-import { connectToDB } from "./src/shared/core/database";
+import { PORT } from "./src/startup/config";
+import { connectToDB } from "./src/startup/database";
 
 const app = express();
 setupRestEndpoint(app);

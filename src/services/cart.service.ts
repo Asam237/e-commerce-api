@@ -1,7 +1,7 @@
-import { CreateCartInput } from "../../shared/types/models";
+import { CreateCartDto } from "../dtos/models";
 import { CartModel } from "../models/cart.model";
 
-const create = async (input: CreateCartInput) => {
+const create = async (input: CreateCartDto) => {
   return await CartModel.create(input);
 };
 

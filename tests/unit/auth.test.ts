@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import { Request, Response } from "express";
-import { UserModel } from "../../src/domain/models/user.model";
-import { authMiddleware } from "../../src/shared/core/middleware/auth.middleware";
+import { UserModel } from "../../src/models/user.model";
+import { authMiddleware } from "../../src/middlewares/auth.middleware";
 
 interface AuthRequest extends Request {
   header: jest.Mock;

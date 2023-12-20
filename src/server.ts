@@ -7,9 +7,7 @@ import * as swaggerUi from "swagger-ui-express";
 import * as swaggerDoc from "./swagger.json";
 
 export const setupRestEndpoint = (app: Application) => {
-  const router = express.Router();
   app.use(express.json());
-  app.use("/", router);
   app.use("/", AuthRoute());
   app.use("/", ProductRoute());
   app.use("/", CartRoute());

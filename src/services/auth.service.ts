@@ -1,7 +1,7 @@
-import { CreateUserInput } from "../../shared/types/models";
+import { CreateUserDto } from "../dtos/models";
 import { UserModel } from "../models/user.model";
 
-const registerService = async (input: CreateUserInput) => {
+const registerService = async (input: CreateUserDto) => {
   return await UserModel.create(input);
 };
 

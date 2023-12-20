@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
-import { ProductUpdateParams } from "../domain/models/product.model";
-import { UserModel } from "../domain/models/user.model";
-import productService from "../domain/services/product.service";
-import { CreateProductInput } from "../shared/types/models";
-import { parseRequest } from "../utils/helpers";
+import { ProductUpdateParams } from "../models/product.model";
+import { UserModel } from "../models/user.model";
+import productService from "../services/product.service";
+import { CreateProductDto } from "../dtos/models";
+import { parseRequest } from "./helpers";
 
 const create = async (req: Request, res: Response) => {
-  const { costUnity, name, quantityAvailabe }: CreateProductInput = req.body;
+  const { costUnity, name, quantityAvailabe }: CreateProductDto = req.body;
   try {
     const user = await UserModel.findById({ _id: req.body.user });
     const createProduct = await productService.create({
