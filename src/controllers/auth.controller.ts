@@ -38,13 +38,9 @@ const loginController = async (req: Request, res: Response) => {
   }
 };
 
-const me = async (req: Request, res: Response) => {
-  const token = req.headers.authorization;
-  const jsonPayload = JSON.parse(
-    Buffer.from(token.split(".")[1], "base64").toString()
-  );
+const me = async (req: Request & { user: any }, res: Response) => {
   try {
-    const user = await authService.findUserById(jsonPayload.id);
+    const user = await authService.findUserById(req.user.id);
     return res.json({ user });
   } catch (error) {
     return res.status(400).json({ error });
