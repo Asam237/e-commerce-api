@@ -7,7 +7,7 @@ export const authMiddleware = async (
   res: Response,
   next: NextFunction,
 ) => {
-  const token = req.headers["authorization"];
+  const token = req.header("authorization");
   if (!token) {
     return res
       .status(401)
