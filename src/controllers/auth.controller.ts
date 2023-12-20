@@ -1,10 +1,7 @@
 import { Request, Response } from "express";
 import { CreateUserInput, LoginUserInput } from "../shared/types/models";
 import * as bcrypt from "bcryptjs";
-import * as jwt from "jsonwebtoken";
 import authService from "../domain/services/auth.service";
-import { TokenPayload } from "../shared/types/commons";
-import { EXPIRES, JWT_SECRET } from "../shared/core/config";
 
 const registerController = async (req: Request, res: Response) => {
   const { email, fullname, role }: CreateUserInput = req.body;
