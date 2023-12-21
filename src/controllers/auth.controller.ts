@@ -1,13 +1,10 @@
 import { Request, Response } from "express";
-import { CreateUserInput, LoginUserInput } from "../shared/types/models";
+import { CreateUserDto, LoginUserDto } from "../dtos/models";
 import * as bcrypt from "bcryptjs";
-import * as jwt from "jsonwebtoken";
-import authService from "../domain/services/auth.service";
-import { TokenPayload } from "../shared/types/commons";
-import { EXPIRES, JWT_SECRET } from "../shared/core/config";
+import authService from "../services/auth.service";
 
 const registerController = async (req: Request, res: Response) => {
-  const { email, fullname, role }: CreateUserInput = req.body;
+  const { email, fullname, role }: CreateUserDto = req.body;
   try {
     const password: string = bcrypt.hashSync(req.body.password, 10);
     const createUser = await authService.registerService({
@@ -24,7 +21,7 @@ const registerController = async (req: Request, res: Response) => {
 };
 
 const loginController = async (req: Request, res: Response) => {
-  const { email, password }: LoginUserInput = req.body;
+  const { email, password }: LoginUserDto = req.body;
   try {
     const user = await authService.findByEmail(email);
     if (!user) {
@@ -41,13 +38,9 @@ const loginController = async (req: Request, res: Response) => {
   }
 };
 
-const me = async (req: Request, res: Response) => {
-  const token = req.headers.authorization;
-  const jsonPayload = JSON.parse(
-    Buffer.from(token.split(".")[1], "base64").toString()
-  );
+const me = async (req: Request & { user: any }, res: Response) => {
   try {
-    const user = await authService.findUserById(jsonPayload.id);
+    const user = await authService.findUserById(req.user.id);
     return res.json({ user });
   } catch (error) {
     return res.status(400).json({ error });

@@ -1,13 +1,13 @@
 import jwt from "jsonwebtoken";
 import { Request, Response, NextFunction } from "express";
-import { JWT_SECRET } from "../config";
+import { JWT_SECRET } from "../startup/config";
 
 export const authMiddleware = async (
   req: Request & { user: any },
   res: Response,
   next: NextFunction,
 ) => {
-  const token = req.headers["authorization"];
+  const token = req.header("authorization");
   if (!token) {
     return res
       .status(401)

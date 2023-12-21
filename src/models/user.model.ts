@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import jwt from "jsonwebtoken";
-import { JWT_SECRET } from "../../shared/core/config";
+import { EXPIRES, JWT_SECRET } from "../startup/config";
 
 const userSchema: mongoose.Schema = new mongoose.Schema({
   fullname: { type: String, required: true },
@@ -23,7 +23,9 @@ const userSchema: mongoose.Schema = new mongoose.Schema({
 });
 
 userSchema.methods.generateAuthToken = function () {
-  return jwt.sign({ id: this._id, }, JWT_SECRET);
+  return jwt.sign({ id: this._id }, JWT_SECRET, {
+    expiresIn: EXPIRES,
+  });
 };
 
 const UserModel = mongoose.model("User", userSchema);

@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
-import { CartUpdateParams } from "../domain/models/cart.model";
-import { ProductModel } from "../domain/models/product.model";
-import cartService from "../domain/services/cart.service";
-import { CreateCartInput } from "../shared/types/models";
-import { parseRequest } from "../utils/helpers";
+import { CartUpdateParams } from "../models/cart.model";
+import { ProductModel } from "../models/product.model";
+import cartService from "../services/cart.service";
+import { CreateCartDto } from "../dtos/models";
+import { parseRequest } from "./helpers";
 
 const create = async (req: Request, res: Response) => {
-  const { quantity }: CreateCartInput = req.body;
+  const { quantity }: CreateCartDto = req.body;
   try {
     const product = await ProductModel.findById({ _id: req.body.product });
     const createCart = await cartService.create({

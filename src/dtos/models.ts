@@ -1,4 +1,4 @@
-export type CreateUserInput = {
+export type CreateUserDto = {
   fullname: string;
   email: string;
   password: string;
@@ -6,12 +6,12 @@ export type CreateUserInput = {
   role: string;
 };
 
-export type LoginUserInput = {
+export type LoginUserDto = {
   email: string;
   password: string;
 };
 
-export type CreateProductInput = {
+export type CreateProductDto = {
   name: string;
   quantityAvailabe: number;
   costUnity: number;
@@ -19,14 +19,14 @@ export type CreateProductInput = {
   cart?: any;
 };
 
-export type CreateCartInput = {
+export type CreateCartDto = {
   quantity: number;
   product?: any;
   createdAt?: any;
   order?: any;
 };
 
-export type CreateOrderInput = {
+export type CreateOrderDto = {
   status: string;
   createdAt?: any;
   cart?: any;
