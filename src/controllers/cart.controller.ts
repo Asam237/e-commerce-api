@@ -13,7 +13,7 @@ const create = async (req: Request, res: Response) => {
       quantity,
       product,
     });
-    product.carts.push(createCart._id);
+    // product.carts.push(createCart._id);
     await product.save();
     await createCart.save();
     return res.json({ cart: createCart });

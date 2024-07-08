@@ -14,3 +14,4 @@ export const setupRestEndpoint = (app: Application) => {
   app.use("/", OrderRoute());
   app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 };
+

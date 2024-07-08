@@ -15,7 +15,7 @@ const create = async (req: Request, res: Response) => {
       quantityAvailabe,
       user,
     });
-    user.products.push(createProduct._id);
+    // user.products.push(createProduct._id);
     await user.save();
     await createProduct.save();
     return res.json({ product: createProduct });

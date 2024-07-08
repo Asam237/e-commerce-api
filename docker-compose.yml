@@ -1,13 +1,8 @@
-version: '3'
 services:
   mongo:
     image: mongo
     restart: always
-    volumes:
-      - api:/data/db
-  api: 
-    build: .
-    ports:
-      - 7000:3000
+    # volumes:
+    #   - api:/data/db
 volumes:
   api:
