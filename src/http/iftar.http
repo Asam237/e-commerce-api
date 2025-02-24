@@ -1,0 +1,3 @@
+### GET
+http://localhost:3010/iftar-time?city=Maroua&country=Cam
+Content-Type: application/json

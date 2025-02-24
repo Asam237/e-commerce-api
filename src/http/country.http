@@ -1,0 +1,4 @@
+
+### GET
+http://localhost:3010/countries
+Content-Type: application/json

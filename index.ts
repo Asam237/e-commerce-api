@@ -1,11 +1,10 @@
 import express from "express";
-import { setupRestEndpoint } from "./src/server";
-import { PORT } from "./src/startup/config";
-import { connectToDB } from "./src/startup/database";
+import { PORT } from "./src/setup/config";
+import { setupRestEndPoint } from "./src/setupRestEndPoint";
 
 const app = express();
-setupRestEndpoint(app);
-connectToDB();
+setupRestEndPoint(app);
+
 export const server = app.listen(PORT, () => {
-  console.log(`[server]: listening on port ${PORT}`);
+  console.log(`[Server]: running to ${PORT}`);
 });

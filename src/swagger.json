@@ -2,372 +2,70 @@
   "swagger": "2.0",
   "info": {
     "version": "1.0.0",
-    "title": "E-Commerce RestAPI",
-    "description": "My E-Commerce RestAPI Project Application API",
+    "title": "Iftar Time API",
+    "description": "API to get Iftar time for a given city and country",
     "license": {
       "name": "MIT",
       "url": "https://opensource.org/licenses/MIT"
     }
   },
-  "tags": [
-    {
-      "name": "Register",
-      "description": "API for register in the system"
-    }
-  ],
   "schemes": ["http"],
   "consumes": ["application/json"],
   "produces": ["application/json"],
   "paths": {
-    "/auth/register": {
-      "post": {
-        "tags": ["Register"],
-        "description": "Create new user in system",
-        "parameters": [
-          {
-            "name": "user",
-            "in": "body",
-            "description": "User that we want to create",
-            "schema": {
-              "$ref": "#/definitions/User"
-            }
-          }
-        ],
-        "produces": ["application/json"],
-        "responses": {
-          "200": {
-            "description": "New user is created",
-            "schema": {
-              "$ref": "#/definitions/User"
-            }
-          }
-        }
-      }
-    },
-    "/auth/login": {
-      "post": {
-        "tags": ["Login"],
-        "description": "Login user in system",
-        "parameters": [
-          {
-            "name": "user",
-            "in": "body",
-            "description": "User that we want to logged-in",
-            "schema": {
-              "$ref": "#/definitions/UserLogged"
-            }
-          }
-        ],
-        "produces": ["application/json"],
-        "responses": {
-          "200": {
-            "description": "User is logged-in",
-            "schema": {
-              "$ref": "#/definitions/UserLogged"
-            }
-          }
-        }
-      }
-    },
-    "/auth/me": {
+    "/iftar-time": {
       "get": {
-        "summary": "Current user",
-        "tags": ["Login"],
-        "responses": {
-          "200": {
-            "description": "User",
-            "schema": {
-              "$ref": "#/definitions/UserLogged"
-            }
-          }
-        }
-      }
-    },
-    "/products": {
-      "get": {
-        "summary": "Get all products in system",
-        "tags": ["Products"],
-        "responses": {
-          "200": {
-            "description": "Products",
-            "schema": {
-              "$ref": "#/definitions/Products"
-            }
-          }
-        }
-      }
-    },
-    "/products/": {
-      "post": {
-        "tags": ["Products"],
-        "summary": "Create new product in system",
+        "summary": "Get Iftar time",
+        "tags": ["Iftar"],
+        "description": "Retrieve the Iftar time for a specified city and country",
         "parameters": [
           {
-            "name": "product",
-            "in": "body",
-            "description": "Product that we want to create",
-            "schema": {
-              "$ref": "#/definitions/Products"
-            }
-          }
-        ],
-        "produces": ["application/json"],
-        "responses": {
-          "200": {
-            "description": "New product is created",
-            "schema": {
-              "$ref": "#/definitions/Products"
-            }
-          }
-        }
-      }
-    },
-    "/products/delete/{myid}": {
-      "parameters": [
-        {
-          "name": "id",
-          "in": "path",
-          "required": true,
-          "description": "ID of product that we want to find",
-          "type": "string"
-        }
-      ],
-      "delete": {
-        "summary": "Delete product with given ID",
-        "tags": ["Products"],
-        "responses": {
-          "200": {
-            "description": "Product is deleted",
-            "schema": {
-              "$ref": "#/definitions/Products"
-            }
-          }
-        }
-      }
-    },
-    "/products/{id}": {
-      "put": {
-        "summary": "Update product with given ID",
-        "tags": ["Products"],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
+            "name": "city",
+            "in": "query",
             "required": true,
-            "description": "ID of product that we want to find",
+            "description": "The name of the city",
+            "type": "string"
+          },
+          {
+            "name": "country",
+            "in": "query",
+            "required": true,
+            "description": "The name of the country",
             "type": "string"
           }
         ],
         "responses": {
           "200": {
-            "description": "Product is update",
+            "description": "Iftar time retrieved successfully",
             "schema": {
-              "$ref": "#/definitions/Products"
+              "type": "object",
+              "properties": {
+                "city": { "type": "string" },
+                "country": { "type": "string" },
+                "iftar_time": { "type": "string", "format": "time" }
+              }
             }
+          },
+          "400": {
+            "description": "Invalid parameters"
+          },
+          "404": {
+            "description": "Iftar time not found for the specified location"
           }
         }
       }
     },
-    "/carts": {
+    "/countries": {
       "get": {
-        "summary": "Get all carts in system",
-        "tags": ["Carts"],
+        "summary": "Get countries",
+        "tags": ["Country"],
+        "description": "Retrieve all countries",
         "responses": {
           "200": {
-            "description": "Carts",
-            "schema": {
-              "$ref": "#/definitions/Carts"
-            }
-          }
-        }
-      }
-    },
-    "/carts/": {
-      "post": {
-        "tags": ["Carts"],
-        "summary": "Create new cart in system",
-        "parameters": [
-          {
-            "name": "cart",
-            "in": "body",
-            "description": "Cart that we want to create",
-            "schema": {
-              "$ref": "#/definitions/Carts"
-            }
-          }
-        ],
-        "produces": ["application/json"],
-        "responses": {
-          "200": {
-            "description": "New cart is created",
-            "schema": {
-              "$ref": "#/definitions/Carts"
-            }
-          }
-        }
-      }
-    },
-    "/carts/delete/{id}": {
-      "parameters": [
-        {
-          "name": "id",
-          "in": "path",
-          "required": true,
-          "description": "ID of cart that we want to find",
-          "type": "string"
-        }
-      ],
-      "delete": {
-        "summary": "Delete cart with given ID",
-        "tags": ["Carts"],
-        "responses": {
-          "200": {
-            "description": "Cart is deleted",
-            "schema": {
-              "$ref": "#/definitions/Carts"
-            }
-          }
-        }
-      }
-    },
-    "/orders": {
-      "get": {
-        "summary": "Get all orders in system",
-        "tags": ["Orders"],
-        "responses": {
-          "200": {
-            "description": "Orders",
-            "schema": {
-              "$ref": "#/definitions/Orders"
-            }
-          }
-        }
-      }
-    },
-    "/orders/": {
-      "post": {
-        "tags": ["Orders"],
-        "summary": "Create new order in system",
-        "parameters": [
-          {
-            "name": "order",
-            "in": "body",
-            "description": "Order that we want to create",
-            "schema": {
-              "$ref": "#/definitions/Orders"
-            }
-          }
-        ],
-        "produces": ["application/json"],
-        "responses": {
-          "200": {
-            "description": "New order is created",
-            "schema": {
-              "$ref": "#/definitions/Orders"
-            }
-          }
-        }
-      }
-    },
-    "/orders/delete/{id}": {
-      "parameters": [
-        {
-          "name": "id",
-          "in": "path",
-          "required": true,
-          "description": "ID of order that we want to find",
-          "type": "string"
-        }
-      ],
-      "delete": {
-        "summary": "Delete order with given ID",
-        "tags": ["Orders"],
-        "responses": {
-          "200": {
-            "description": "Order is deleted",
-            "schema": {
-              "$ref": "#/definitions/Orders"
-            }
+            "description": "Countries retrieved successfully"
           }
         }
       }
     }
-  },
-  "definitions": {
-    "User": {
-      "properties": {
-        "fullname": {
-          "type": "string"
-        },
-        "email": {
-          "type": "string"
-        },
-        "password": {
-          "type": "string"
-        }
-      }
-    },
-    "UserLogged": {
-      "properties": {
-        "email": {
-          "type": "string"
-        },
-        "password": {
-          "type": "string"
-        }
-      }
-    },
-    "Orders": {
-      "properties": {
-        "status": {
-          "type": "string"
-        },
-        "user": {
-          "type": "string"
-        },
-        "cart": {
-          "type": "string"
-        }
-      }
-    },
-    "Products": {
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "quantityAvailabe": {
-          "type": "number"
-        },
-        "costUnity": {
-          "type": "number"
-        },
-        "user": {
-          "type": "string"
-        }
-      }
-    },
-    "Carts": {
-      "properties": {
-        "quantity": {
-          "type": "number"
-        },
-        "product": {
-          "type": "string"
-        }
-      }
-    },
-    "Users": {
-      "type": "array",
-      "$ref": "#/definitions/User"
-    }
-  },
-  "securityDefinitions": {
-    "bearerAuth": {
-      "name": "Authorization",
-      "in": "header",
-      "type": "apiKey",
-      "description": "Enter the token with the Bearer prefix, eg: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVC"
-    }
-  },
-  "security": [{ "bearerAuth": [] }]
+  }
 }
